@@ -58,7 +58,14 @@ function makeRequest(userInput) {
     .catch((error) => console.log('Error:', error));
 }
 
+function clearDataTable() {
+  if (dataTableDiv.firstChild !== null) {
+    dataTableDiv.removeChild(dataTableDiv.firstChild);
+  }
+}
+
 function getWeatherData() {
+  clearDataTable();
   const cleanedUserInput = getCleanedUserInput();
   makeRequest(cleanedUserInput);
 }
