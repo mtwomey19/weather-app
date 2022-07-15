@@ -1,4 +1,5 @@
 import extractWeatherData from './dom-mgmt';
+import '../css/style.css';
 
 const cityInputElement = document.getElementById('city-input');
 const unitsSelectElement = document.getElementById('unit-select');
