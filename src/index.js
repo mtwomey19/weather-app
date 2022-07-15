@@ -1,8 +1,9 @@
-// https://api.openweathermap.org/data/2.5/weather?q=boston&appid=70ec107fb26f74a85b2a65bf25960bab&units=imperial
+import extractWeatherData from './dom-mgmt';
 
 const cityInputElement = document.getElementById('city-input');
 const unitsSelectElement = document.getElementById('unit-select');
 const searchBtn = document.getElementById('search-btn');
+const dataTableDiv = document.getElementById('data-table');
 
 function getRawUserInput() {
   const userInput = {};
@@ -48,7 +49,11 @@ function makeRequest(userInput) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${userInput.city}&appid=70ec107fb26f74a85b2a65bf25960bab&units=${userInput.units}`;
   fetch(url)
     .then((response) => response.json())
-    .then((json) => console.log(parseWeatherData(json)))
+    .then((json) => {
+      const weatherData = parseWeatherData(json);
+      const table = extractWeatherData(weatherData);
+      dataTableDiv.appendChild(table);
+    })
     .catch((error) => console.log('Error:', error));
 }
 
